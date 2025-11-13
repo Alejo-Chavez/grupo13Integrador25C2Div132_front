@@ -1,0 +1,96 @@
+/*Seteo por defecto todo el html sin margin ni padding*/
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Helevetica, Helevetica Neue;
+}/*---------------------Estilos del Header---------------------*/
+.filter-button{
+    display: none;
+}
+.upper-nav{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.names{
+    display: flex;
+    justify-content:left;
+    padding: 5px;
+    gap: 30px ;
+
+}
+
+.upper-nav-buttons{
+    display: flex;
+    justify-content: right;
+} 
+/*---------------------Estilos del Main---------------------*/
+.container{
+    background-color: rgba(250, 235, 215, 0.295);
+    display: grid;
+    grid-template-columns:  350px 1fr; 
+    gap: 5px;
+}
+/*Estilos del aside de Filtrado*/
+.aside-filter {
+    background-color: rgba(0, 255, 42, 0.555);
+    
+}
+/*Estilos de la seccion de productos (no de los productos en si)*/
+#section-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Estilos del contenedor donde se meten los productos.
+   Utilizo grid para que se acomoden automaticamente las tarjetas de productos, ya que es más comodo para 
+   este tipo de estructuras (con flex sería más dificil hacer que se acomoden automaticamente las tarjetas)
+*/
+
+#products-container {
+    display: grid;;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    background-color: rgba(192, 163, 135, 0.301);
+}
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: brown;
+
+}
+/*Estilos de las imagenes dentro de las tarjetas de productos*/
+.product-card img {
+    width: 100%;
+    height: 150px;
+}
+
+/*Estilos en version tablets digamos*/
+@media (max-width: 1030px){
+    .aside-filter {
+        display: none;
+    }
+    #products-container {
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    /*Acá si achicamos el Main sigue dividio en dos (pero solo tenemos los porductos ahora) por lo que volvemos a setear el grid-templates-columns para que no quede despropcionado */
+
+    .container{
+        grid-template-columns: 1fr;
+    }
+
+    .filter-button{
+        display: inline-block;
+    }
+}
+
+@media (max-width: 1024px) {
+    
+    
+    #products-container {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
