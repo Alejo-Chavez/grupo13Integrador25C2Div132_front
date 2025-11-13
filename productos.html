@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/productos.css">
     <script defer src="js/productos.js"></script>
 
@@ -19,15 +20,18 @@
                     <h2>Francisco Cóceres</h2>
                 </div>
                 <div class="upper-nav-buttons">
-                    <button>Tickets</button>
-                    <button>Salir</button>
+                    <button class="nav-button active-style">Tickets</button>
+                    <button class="nav-button active-style">Salir</button>
                 </div>
             </nav>
-            <nav class="search-button">
-
-                <input type="text" placeholder="Buscar">
-                <button class="filter-button">Filtros</button>
-                <button class="car-button">Carrito</button>
+            <nav class="search-nav">
+                <div class="categories">
+                    <button class="categorie-button active-style">Suplementos</button>
+                    <button class="categorie-button active-style">Ropa Deportiva</button>
+                </div>
+                <input type="text" placeholder="Buscar" class="search-input">
+                <button class="filter-button">Filtrar</button>
+                <button class="car-button active-style">Carrito</button>
             </nav>
         </div>
     </header>

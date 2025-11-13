@@ -2,29 +2,110 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: Helevetica, Helevetica Neue;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 }/*---------------------Estilos del Header---------------------*/
+
 .filter-button{
     display: none;
-}
+} 
+
+/*FILTROS NAV PRIMARIO*/
 .upper-nav{
     padding: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    background-color: #fdf6f5;
 }
 
 .names{
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content:left;
+    align-items: center;
     padding: 5px;
     gap: 30px ;
-
+    color: #111;
+    font-size: 0.55rem;
 }
 
 .upper-nav-buttons{
     display: flex;
     justify-content: right;
+    gap: 20px ; 
 } 
+
+
+/*----Estilos de botones del nav primario: */
+
+.nav-button{
+    font-family:'Poppins', sans-serif;
+    background-color:#fdf6f5;
+    border: none;
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.nav-button:hover {
+    border-radius:5px;
+    text-decoration: double underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: #11111193;
+}
+/*Efecto para TODOS los botones del header y no ir de 1 en 1*/
+.active-style:active{
+    scale: 0.87;
+}
+
+
+/*FILTROS NAV SECUNDARIO*/
+.search-nav{
+    background-color:#fcfaf9;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 10px;
+}
+/*Estilos de botones ropa deportiva y suplementos para filtrar*/
+.categories{
+    display: flex;
+    gap: 20px;
+}
+/*Estilización de los botones del segundo nav (estilo en comun)*/
+.categorie-button, .car-button{
+    background-color:#fcfaf9;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 6px 12px;
+    
+}
+.categorie-button:hover, .car-button:hover{
+    box-shadow:0 8px 18px 0px #e0662525;
+    border-radius: 8px;
+}
+
+/*Estilo barra de busqueda*/
+.search-input{
+    padding: 9px 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 200px;
+}
+
+.search-input:focus{
+    scale: 0.989;
+    outline: none;
+    border: 1px solid #00010880;
+
+}
+
+
 /*---------------------Estilos del Main---------------------*/
 .container{
     background-color: rgba(250, 235, 215, 0.295);
@@ -37,28 +118,26 @@
     background-color: rgba(0, 255, 42, 0.555);
     
 }
-/*Estilos de la seccion de productos (no de los productos en si)*/
-#section-products {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-/* Estilos del contenedor donde se meten los productos.
-   Utilizo grid para que se acomoden automaticamente las tarjetas de productos, ya que es más comodo para 
-   este tipo de estructuras (con flex sería más dificil hacer que se acomoden automaticamente las tarjetas)
+
+/* Estilos del contenedor donde se meten los productos.---
+
+        Utilizo grid para que se acomoden automaticamente las tarjetas de productos, ya que es más comodo para 
+        este tipo de estructuras (con flex sería más dificil hacer que se acomoden automaticamente las tarjetas)
 */
 
 #products-container {
+    padding: 10px;
     display: grid;;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     gap: 10px;
-    background-color: rgba(192, 163, 135, 0.301);
+    background-color: rgba(255, 123, 0, 0.699);
 }
+/*Estilos del interior de las cards producto*/
 .product-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: brown;
+    background-color: rgba(165, 42, 42, 0.658);
 
 }
 /*Estilos de las imagenes dentro de las tarjetas de productos*/
@@ -71,13 +150,13 @@
 @media (max-width: 1030px){
     .aside-filter {
         display: none;
-    }
+    }/*
     #products-container {
         grid-template-columns: repeat(3,1fr);
-    }
+    }*/
 
     /*Acá si achicamos el Main sigue dividio en dos (pero solo tenemos los porductos ahora) por lo que volvemos a setear el grid-templates-columns para que no quede despropcionado */
-
+    
     .container{
         grid-template-columns: 1fr;
     }
@@ -87,10 +166,5 @@
     }
 }
 
-@media (max-width: 1024px) {
-    
-    
-    #products-container {
-        grid-template-columns: repeat(2,1fr);
-    }
-}
+
+/*PENDIENTE HACER Q CUANDO SEA DISPOSITIVO MOVIL NO NO MUESTRE TANTOS PRODUCTOS PQ SE VE CHICO TODO EL TExTO*/
