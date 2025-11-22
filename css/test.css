@@ -1,0 +1,19 @@
+*{
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+.card-image{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+.card-image .card-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+

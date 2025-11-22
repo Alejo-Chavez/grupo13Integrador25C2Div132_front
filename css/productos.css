@@ -4,43 +4,45 @@
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-}/*---------------------Estilos del Header---------------------*/
+}
 
-.filter-button{
+/*---------------------Estilos del Header---------------------*/
+
+.sort-button {
     display: none;
-} 
+}
 
 /*FILTROS NAV PRIMARIO*/
-.upper-nav{
+.upper-nav {
     padding: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: #fdf6f5;
 }
 
-.names{
+.names {
     font-family: 'Poppins', sans-serif;
     display: flex;
-    justify-content:left;
+    justify-content: left;
     align-items: center;
     padding: 5px;
-    gap: 30px ;
+    gap: 30px;
     color: #111;
     font-size: 0.55rem;
 }
 
-.upper-nav-buttons{
+.upper-nav-buttons {
     display: flex;
     justify-content: right;
-    gap: 20px ; 
-} 
+    gap: 20px;
+}
 
 
 /*----Estilos de botones del nav primario: */
 
-.nav-button{
-    font-family:'Poppins', sans-serif;
-    background-color:#fdf6f5;
+.nav-button {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdf6f5;
     border: none;
     padding: 8px 16px;
     font-size: 15px;
@@ -48,49 +50,55 @@
     cursor: pointer;
     transition: 0.2s;
 }
+
 .nav-button:hover {
-    border-radius:5px;
+    border-radius: 5px;
     text-decoration: double underline;
     text-decoration-thickness: 1px;
     text-decoration-color: #11111193;
 }
+
 /*Efecto para TODOS los botones del header y no ir de 1 en 1*/
-.active-style:active{
+.active-style:active {
     scale: 0.87;
 }
 
 
 /*FILTROS NAV SECUNDARIO*/
-.search-nav{
-    background-color:#fcfaf9;
+.search-nav {
+    background-color: #fcfaf9;
     height: 60px;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     gap: 10px;
 }
+
 /*Estilos de botones ropa deportiva y suplementos para filtrar*/
-.categories{
+.categories {
     display: flex;
     gap: 20px;
 }
+
 /*Estilización de los botones del segundo nav (estilo en comun)*/
-.categorie-button, .car-button{
-    background-color:#fcfaf9;
+.car-button,
+.categorie-button {
+    background-color: #fcfaf9;
     border: none;
     font-size: 14px;
     cursor: pointer;
     transition: 0.2s;
     padding: 6px 12px;
-    
+
 }
-.categorie-button:hover, .car-button:hover{
-    box-shadow:0 8px 18px 0px #e0662525;
+
+.car-button:hover {
+    box-shadow: 0 8px 18px 0px #e0662525;
     border-radius: 8px;
 }
 
 /*Estilo barra de busqueda*/
-.search-input{
+.search-input {
     padding: 9px 14px;
     font-size: 16px;
     border: 1px solid #ddd;
@@ -98,70 +106,111 @@
     width: 200px;
 }
 
-.search-input:focus{
+.search-input:focus {
     scale: 0.989;
     outline: none;
     border: 1px solid #00010880;
 
 }
 
+/*-------Estilo BOTONES GENERALES ----------*/
+.btn {
+    user-select: none;
+}
+
+/*-------divisor del nav y main---------*/
+.divisor {
+    border: none;
+    height: 3px;
+    background: #dddddd94;
+}
 
 /*---------------------Estilos del Main---------------------*/
-.container{
+.container {
     background-color: rgba(250, 235, 215, 0.295);
     display: grid;
-    grid-template-columns:  350px 1fr; 
-    gap: 5px;
-}
-/*Estilos del aside de Filtrado*/
-.aside-filter {
-    background-color: rgba(0, 255, 42, 0.555);
-    
+    grid-template-columns: 350px 1fr;
 }
 
-/* Estilos del contenedor donde se meten los productos.---
+/*---------------------Estilos del aside de Filtrado----------------*/
+.aside-sort {
+    padding: 0.7vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    background-color: #e7e7e700;
+    height: 100vh;
+
+}
+
+.btn-order input[type="radio"] {
+    display: none;
+}
+
+.btn-order {
+    background: #e0e0e0;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.orden-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 1VW;
+
+
+}
+
+
+
+
+
+/* ======================================================================
+Estilos del contenedor donde se meten los productos.
 
         Utilizo grid para que se acomoden automaticamente las tarjetas de productos, ya que es más comodo para 
         este tipo de estructuras (con flex sería más dificil hacer que se acomoden automaticamente las tarjetas)
 */
-
-#products-container {
-    padding: 10px;
-    display: grid;;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 10px;
-    background-color: rgba(255, 123, 0, 0.699);
+#products-section {
+    background-color: #E7E7E7;
+    display: flex;
+    flex-wrap:wrap;
+    height: 100vh;
 }
-/*Estilos del interior de las cards producto*/
+
 .product-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: rgba(165, 42, 42, 0.658);
+    width: 100px;
+    height: 100px;
+}
 
-}
-/*Estilos de las imagenes dentro de las tarjetas de productos*/
 .product-card img {
-    width: 100%;
-    height: 150px;
+    width: 100px;
+    height: 100px;
 }
+
 
 /*Estilos en version tablets digamos*/
-@media (max-width: 1030px){
-    .aside-filter {
+@media (max-width: 1030px) {
+    .aside-sort {
         display: none;
-    }/*
+    }
+
+    /*
     #products-container {
         grid-template-columns: repeat(3,1fr);
     }*/
 
     /*Acá si achicamos el Main sigue dividio en dos (pero solo tenemos los porductos ahora) por lo que volvemos a setear el grid-templates-columns para que no quede despropcionado */
-    
-    .container{
+
+    .container {
         grid-template-columns: 1fr;
     }
 
-    .filter-button{
+    .sort-button {
         display: inline-block;
     }
 }
