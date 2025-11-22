@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 /*Seteo por defecto todo el html sin margin ni padding*/
 * {
     padding: 0;
@@ -8,9 +11,6 @@
 
 /*---------------------Estilos del Header---------------------*/
 
-.sort-button {
-    display: none;
-}
 
 /*FILTROS NAV PRIMARIO*/
 .upper-nav {
@@ -81,20 +81,14 @@
 }
 
 /*Estilización de los botones del segundo nav (estilo en comun)*/
-.car-button,
-.categorie-button {
+.search-nav-button {
     background-color: #fcfaf9;
     border: none;
     font-size: 14px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.19s;
     padding: 6px 12px;
 
-}
-
-.car-button:hover {
-    box-shadow: 0 8px 18px 0px #e0662525;
-    border-radius: 8px;
 }
 
 /*Estilo barra de busqueda*/
@@ -112,6 +106,69 @@
     border: 1px solid #00010880;
 
 }
+/*----------------------ESTILOS BOTONES CATEGORIAS ACTIVOS--------------*/
+.search-nav-button.active-category {
+    background-color: #e63232;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+}
+/*-----------------ESTILO BOTON ORDENAR ---------------*/
+.sort-container {
+    position: relative;    /* ← clave: el dropdown se posiciona relativo a esto */
+    display: inline-block;
+}
+.sort-dropdown {
+    position: absolute;
+    top: 100%;               /* sale justo debajo del botón */
+    left: 0;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);  /* sombra suave como CompraGamer */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 160px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+.sort-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.sort-dropdown li a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+.sort-dropdown a.selected {
+    background-color: #e63232;   
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px;
+}
+.sort-dropdown a:hover {
+    background-color: #e70c0c1e;   
+    border-radius: 10px;
+}
+
+.sort-btn.active-sort {
+    background-color: #e63232;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
 
 /*-------Estilo BOTONES GENERALES ----------*/
 .btn {
@@ -129,11 +186,13 @@
 .container {
     background-color: rgba(250, 235, 215, 0.295);
     display: grid;
-    grid-template-columns: 350px 1fr;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
 }
 
 /*---------------------Estilos del aside de Filtrado----------------*/
 .aside-sort {
+    display: none !important; /*aca lo oculto pq al pedo poner filtros si por como esta diseñado nomas se podra filtrar por categoria*/
     padding: 0.7vh;
     display: flex;
     align-items: center;
@@ -149,22 +208,31 @@
 }
 
 .btn-order {
-    background: #e0e0e0;
     border-radius: 3px;
     cursor: pointer;
     padding: 6px;
+
+    background-color: #f8f8f8;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;               /* bordes redondeados suaves */
+    padding: 12px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .orden-buttons {
     display: flex;
     justify-content: space-around;
     gap: 1VW;
-
-
 }
-
-
-
 
 
 /* ======================================================================
@@ -175,23 +243,81 @@ Estilos del contenedor donde se meten los productos.
 */
 #products-section {
     background-color: #E7E7E7;
-    display: flex;
-    flex-wrap:wrap;
-    height: 100vh;
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 240px)); 
+    gap:4rem;
+    padding: 4vw;        
+    max-width: 100% ;
+    margin: 0 ;         
+    box-sizing: border-box;
+    justify-content: space-evenly;
+}   
 
 .product-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;            
+    height: 25rem;    
+    width: 18rem;                  
+}
+.image-container{
+    flex: 3;                           
+    overflow: hidden;
+}
+
+.information-container{ 
+    flex: 2;                           /* ← ocupa 2 parte (el resto)) */
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    width: 100px;
-    height: 100px;
+    justify-content: space-between;    /* botón abajo pegado */
+    text-align: center;
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                 /* ← la imagen llena y se recorta lindo */
+    display: block;
 }
 
-.product-card img {
-    width: 100px;
-    height: 100px;
+
+.add-to-cart-btn{
+    background-color: #e63232;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
 }
 
+.product-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.2;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.product-category, .product-price{
+    display: flex;
+    justify-content: start;
+    margin-left: 20px;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+}
+.product-price{
+    font-size: 22px;
+    font-weight: 500;
+}
 
 /*Estilos en version tablets digamos*/
 @media (max-width: 1030px) {

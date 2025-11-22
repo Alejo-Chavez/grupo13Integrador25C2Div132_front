@@ -10,6 +10,7 @@
     <script defer src="js/productos.js"></script>
     <link rel="icon" href="img/logo-empresa.jpeg" type="img.jpeg">
 
+
 </head>
 
 <body>
@@ -17,6 +18,7 @@
         <div>
             <nav class="upper-nav">
                 <div class="names">
+                    <h2>FitLab</h2>
                     <h2>Alejo Chavez</h2>
                     <h2>Francisco Cóceres</h2>
                 </div>
@@ -27,12 +29,20 @@
             </nav>
             <nav class="search-nav">
                 <div class="categories">
-                    <button class="categorie-button active-style btn">Suplementos</button>
-                    <button class="categorie-button active-style btn">Ropa Deportiva</button>
+                    <button class="search-nav-button supplement-sort-btn active-style btn">Suplementos</button>
+                    <button class="search-nav-button clothes-sort-btn active-style btn">Ropa Deportiva</button>
                 </div>
                 <input type="text" placeholder="Buscar" class="search-input">
-                <button class="sort-button btn">Ordenar</button>
-                <button class="car-button active-style btn">Carrito</button>
+                <div class="sort-container">
+                    <button class="search-nav-button sort-btn active-style btn" id="sort-button">Ordenar</button>
+                    <ul class="sort-dropdown" id="sort-dropdown">
+                        <li><a href="#" data-sort="lowest-price">Menor precio</a></li>
+                        <li><a href="#" data-sort="highest-price">Mayor precio</a></li>
+                        <li><a href="#" data-sort="az">A - Z</a></li>
+                        <li><a href="#" data-sort="za">Z - A</a></li>
+                    </ul>
+                </div>
+                <button class="search-nav-button car-button active-style btn">Carrito</button>
 
             </nav>
         </div>
@@ -46,22 +56,22 @@
 
                 <label class="btn-order btn">
                     <input type="radio" name="orden" value="az">
-                    A - Z
+                    A-Z
                 </label>
 
                 <label class="btn-order btn">
                     <input type="radio" name="orden" value="za">
-                    Z - A
+                    Z-A
                 </label>
 
                 <label class="btn-order btn">
                     <input type="radio" name="orden" value="lowest-price">
-                    Precio menor a mayor
+                    Menor precio
                 </label>
 
                 <label class="btn-order btn">
                     <input type="radio" name="orden" value="highest-price">
-                    Precio mayor a menor
+                    Mayor precio
                 </label>
 
             </div>
