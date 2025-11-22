@@ -119,7 +119,7 @@ sortDropdown.addEventListener('click', (event) => {
         const selectedOption = event.target.dataset.sort;
         const optionText = event.target.textContent.trim();
 
-        // Si hace clic en la misma opción que ya estaba activa → vuelve a default
+        // Si hace clic en la misma opción que ya estaba activa  vuelve a default
         if (currentSort === selectedOption) {
             currentSort = null;
             sortButton.textContent = "Ordenar";
