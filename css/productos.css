@@ -7,7 +7,7 @@
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-}
+} 
 
 /*---------------------Estilos del Header---------------------*/
 
@@ -35,7 +35,7 @@
     display: flex;
     justify-content: right;
     gap: 20px;
-}
+} 
 
 
 /*----Estilos de botones del nav primario: */
@@ -88,7 +88,7 @@
     cursor: pointer;
     transition: 0.19s;
     padding: 6px 12px;
-
+    
 }
 
 /*Estilo barra de busqueda*/
@@ -331,7 +331,7 @@ Estilos del contenedor donde se meten los productos.
     }*/
 
     /*Acá si achicamos el Main sigue dividio en dos (pero solo tenemos los porductos ahora) por lo que volvemos a setear el grid-templates-columns para que no quede despropcionado */
-
+    
     .container {
         grid-template-columns: 1fr;
     }
