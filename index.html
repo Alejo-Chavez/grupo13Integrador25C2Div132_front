@@ -5,16 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Inicio</title>
+    <link rel="icon" href="img/logo-empresa.jpeg" type="img.jpeg">
+    <title>Fit Lab</title>
 </head>
 
 <body>
+    <header>
+        <div class="header-info">
+            <div class="logo-title-container">
+                <div class="header-logo">
+                    <img src="img/logo-empresa.jpeg" alt="FitLab logo">
+                </div>
+                <h1>Fit Lab</h1>
+            </div>
+            <div class="header-names">
+                <a href="https://github.com/Alejo-Chavez">
+                    <h2>Alejo Chavez</h2>
+                </a>
+                <a href="">
+                    <h2>Francisco Cóceres</h2>
+                </a>
+            </div>
+        </div>
+        <div class="nav-bar">
+            <a href="productos.html">
+                <button class="products-button btn">Productos</button>
+            </a>
+            <a href="">
+                <button class="btn car-button">Carrito</button>
+            </a>
+            <a href="">
+                <button class="btn tickets-button">Tickets</button>
+            </a>
+        </div>
+
+    </header>
     <main>
-        <h1 id="titulo">Mi tienda.ar</h1>
-        <div class=" inicio_usuario">
-            <label for="id-usuario">Ingresar nombre</label>
-            <input type="text" id="id-usuario">
-            <button id="boton-enviar">Entrar</button>
+        <div class="form-container">
+            <div class=" user-login">
+                <div class="form-title">
+                    <h3>Bienvenido a FitLab</h3>
+                </div>
+                <div class="form">
+                    <p>Porfavor ingrese un nombre de usuario para ingresar</p>
+                    <label for="id-usuario"></label>
+                    <input type="text" id="id-usuario" placeholder="Usuario"> 
+                    <button id="login-user-button">Entrar</button>
+                </div>
+            </div>
         </div>
     </main>
 </body>

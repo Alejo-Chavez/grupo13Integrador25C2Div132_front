@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /*Margen y padding al 0 de todo (body y el html)*/
 * {
     margin: 0;
@@ -5,101 +7,258 @@
     box-sizing: border-box;
 }
 
+    /* TEST
+*{ 
+    outline: 1px solid red !important; /* 👈 Marca todos los elementos} 
+    */
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-/*estilos del body (el div con)*/
-body {
-    height: 100vh;
+
+header {
+    width: 100%;
+    height: 136px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+/*============== ESTILOS PARA EL NAV ====================*/
+
+.header-info,.nav-bar { /*Estilos para ambos*/
+    width: 100%;
+}
+
+.header-info {
+    /*Afecta al h1 como a los nombres*/
+    background-color: #121213f3;
+    display: flex;
+    justify-content: space-between;
+    gap: 9rem;
+    height: 60%;
+    min-height: 0;
+    color: #fff;
+    /*En flex-direction: column; el atributo flex controla el ALTO, en flex-direction: row;, controla el ANCHO*/
+}
+.logo-title-container{
+    display: flex;
+    align-items: center;
+    margin-left: 4%;
+    gap: 0.5rem;
+}
+.header-logo{   /*El "marco" donde colocaremos el logo*/
+    width: 40px;
+    height: 40px; 
+}
+.header-logo img{   /*Las medidas de la imagen-logo*/
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.header-info h1 { /*Estilos del titulo "Fit Lab"*/
+    display: flex;
+    align-items: center;
+    font-size:1.56rem;
+}
+
+.header-names {
+    /*Solo a los nombres*/
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1.3rem;
+    padding: 0 1.5% ;
+}
+/*>>>>>>>>>>>>>>>>>>>>>ESTILOS DEL LINK A GITHUB>>>>>>>>>>>>>>>>>>>*/
+.header-names a{
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+.header-names a h2{
+    font-size: 1rem;
+    transition: 0.2s ease-out;
+    padding: 0.3rem;
+}
+.header-names a:hover h2{
+    font-size: 1.22rem;
+    color: #dff0ff;
+    opacity: 90%;
+}
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+.nav-bar {
+    /*Estilos para los botones*/
+    background-color: #202020;
+    height: 40%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btn{
+    text-decoration: none;
+    background-color: #2a99fada;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 6rem;
+    height: 2.3rem;
+    color: #000000a8;
+    display: inline-block;
+    font-family: "Poppins", sans-serif;
+    font-style: oblique;
+    box-shadow: 0 0.2rem #0c4e86;
+}
+.btn:hover{
+    filter: brightness(1.25);
+    background-color: #2a99faf8;
+}
+.btn:active{
+    transition: 0.2s linear;
+    font-size: 1rem;
+    transform: translateY(2px);
+    box-shadow: 0 0.14rem #0c4e86;
+}
+
+/*================================= Estilos del main =================================*/
+main{
+    background-color: #F5F7F9;
+    flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: #000000e0;
-    background-attachment: fixed;
-    background-size: cover;
+}
+.form-container{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 5.6rem;
 }
 
-main {
-    background-color: #282828;
-    height: 430px;
-    width: 320px;
-    padding: 32px;
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-}
-
-.inicio_usuario {
-    height: 100%;
+.user-login{
+    border-radius: 0.9rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-}
-
-#titulo {
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 40px;
-}
-
-label {
-    color: #c0c0c0;
-    font-size: 17px;
-    font-weight: bold;   
-    align-self: flex-start;
-    padding-top:20px;
-}
-
-input {
+    justify-content: start;
     width: 100%;
-    padding: 10px;
-    background-color: #f7caf8;
-    border: 1px solid #000;
-    border-radius: 4px;
-    color: rgba(0, 0, 0, 0.856);
-    font-size: 16px;
+    height: 100%; 
+    gap: 4rem;
+    border: 1px solid rgba(0, 0, 0, 0.199);
+    background:linear-gradient(#ffffff,#f5f7f970 );
+    overflow: hidden;
 }
-
-input:focus {
-    outline: none;
-    border: 1px solid #bc12ff;
-}
-
-button {
-    margin-top: 16px;
-    padding: 14px 32px;
-    background-color: #1DB954;
-    color: white;
-    border: none;
-    border-radius: 500px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    transform: scale(1.04);
+.form-title{
+    display: flex;
+    align-items: center;
     justify-content: center;
+    width: 100%;
+    background-color: #202020f8;
+    flex: 1;
+}
+.user-login h3{
+    font-size: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-thickness:1px ;    
+    text-underline-offset: 0.45rem;
+}
+.user-login p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    padding-right: 2.5rem;
+    padding-left: 0.625rem;
+    font-size: 0.8rem;
+    opacity: 70%;
 }
 
-#id_usuario {
-    border: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
+.form{
+    /**/
+    flex:3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form input{
+    width: 16rem;
+    height: 2.5rem;
+    border-radius: 0.625rem;
     
 }
-
-#boton-enviar {
-    border: none;
-    background-color: #b13bff;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 7px;
+.form ::placeholder{
+    text-align: start;
+    padding-left: 0.9rem;
+    font-size: 0.8rem;
+    outline: none;
+}
+#login-user-button{
+    width: 8rem;
+    height: 2.8rem;
+    text-decoration: none;
+    background-color: #1d91f7da;
     cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif
+    border: none;
+    border-radius: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #000000d2;
+    display: inline-block;
+    font-family: "Poppins", sans-serif;
+    font-style: oblique;
+    box-shadow: 0 0.2rem #0c4e86;
+    margin-top: 1rem;
+    transition: 0.2s ease;
 }
 
-/*seguir estilizando la pag pq no queda como quiero pero llevo mucho tiempo sentado (idea log in estilo columnas como spotify)*/
-/*odio css*/
+#login-user-button:hover{
+    box-shadow: 0 0.4rem #0c4e86;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.829);
+}
+#login-user-button:active{
+    width: 7.7rem;
+    height: 2.6rem;
+    background-color: #1d91f7cb;
+    box-shadow: 0 0.1rem #0c4e86;
+    font-size: 0.77rem;filter: brightness(1.1);
+}
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+Media */
+
+@media (max-width: 600px) {
+    .header-info {
+        gap: 8px; 
+    }
+    .header-info h1{
+        font-size: 1.1rem;
+    }
+    .header-logo{
+        width: 20px;
+        height: 20px;
+    }
+    .header-names{
+        gap: 0.5rem;
+    }
+    .header-names a h2{
+        font-size: 0.7rem;
+    }
+    .header-names a:hover h2{
+    font-size: 0.7rem;
+}
+}
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
