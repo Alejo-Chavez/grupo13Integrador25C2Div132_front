@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar producto</title>
+</head>
+<body>
+    <main>
+        <h1>Eliminar producto</h1>
+
+        <form id="getProduct-form">
+            <label for="idProd">Id del producto</label>
+            <input type="number" name="idProd" id="idProd" required>
+            <input type="submit" value="Consultar producto">
+        </form>
+        <hr>
+        <section id="products-container">
+            <ul id="products-list"></ul>
+        </section>
+    </main>
+
+    <script>
+        let productList = document.getElementById("products-list");
+        let getProductForm = document.getElementById("getProduct-form");
+        let url = "http://localhost:3000";
+
+        getProductForm.addEventListener("submit", async (event)=> {
+            event.preventDefault();
+
+            let formData = new FormData(event.target);
+            let data = Object.fromEntries(formData.entries());
+            let idProd = data.idProd; //Ahora q mi form es objeto puedo guardar el id en una variable
+            console.log(idProd);
+            
+            console.log(`Haciendo una peticion GET a la url ${url}/productos/${idProd}`);
+
+            let response = await fetch(`${url}/productos/${idProd}`);
+            let datos = await response.json();
+
+            //Para extraer la respuesta payload
+            let product = datos.payload[0]
+
+            let htmlProduct = `
+                <li class="li-product">
+                    <img class="product-img" src ${product.img}>
+                    <p>Id : ${product.id} | Nombre: ${product.nombre}</p>
+            `;
+            productList.innerHTML = htmlProduct;
+        })
+    </script>
+</body>
+</html>
