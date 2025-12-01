@@ -35,19 +35,36 @@
             
             console.log(`Haciendo una peticion GET a la url ${url}/productos/${idProd}`);
 
-            let response = await fetch(`${url}/productos/${idProd}`);
+            let response = await fetch(`${url}/productos/${idProd}/`);
             let datos = await response.json();
 
-            //Para extraer la respuesta payload
-            let product = datos.payload[0]
+            if (response.ok){
 
+            let product = datos.payload[0] //Para extraer la respuesta payload
+            showProduct(product);
+            
+            } else {
+            console.log(datos.message);
+            showError(datos.message)
+        }
+    });
+        
+         function showProduct(product){
             let htmlProduct = `
                 <li class="li-product">
                     <img class="product-img" src ${product.img}>
-                    <p>Id : ${product.id} | Nombre: ${product.nombre}</p>
+                    <p>Id : ${product.id} | Nombre: ${product.nombre} | Precio: ${product.precio}</p>
             `;
-            productList.innerHTML = htmlProduct;
-        })
+            productList.innerHTML = htmlProduct; 
+        }
+
+        function showError(message){
+            productList.innerHTML = `
+                <li class="message-error">
+                    <strong>${message}</strong>
+                </li>
+            `;
+        }
     </script>
 </body>
 </html>
