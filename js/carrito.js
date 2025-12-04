@@ -1,52 +1,63 @@
 const URL = "http://localhost:3000";
-let car = [];
+let cart = [];
 // ==== === === === === === === === === ===
-const carContainer = document.getElementById("car-container");
-const carList = document.getElementById("car-list");
-const carFooter = document.getElementById("car-footer");
-const carEmpty = document.getElementById("car-empty");
+const cartContainer = document.getElementById("cart-container");
+const cartList = document.getElementById("cart-list");
+const cartAside = document.getElementById("cart-aside");
+const cartEmpty = document.getElementById("cart-empty");
+const logOut = document.getElementById("logOut")
 
-//Funcion para guardar el carrito en sessionStorage
-function saveCar() {
-  sessionStorage.setItem("car", JSON.stringify(car));
+//ADD EVENT LISTENER 
+logOut.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "index.html";
+});
+
+//Funcion para guardar el carrito en localStorage
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-//Funcion para cargar el carrito desde sessionStorage
-function loadCar() {
-  const car = sessionStorage.getItem("car");
+//Funcion para cargar el carrito desde localStorage
+function loadCart() {
+  const cartStorage = localStorage.getItem("cart");
   //Si no esta vacio, lo parsea y lo asigna a la variable carrito
-  if (car) {
-    car = JSON.parse(car);
+  if (cartStorage) {
+    cart = JSON.parse(cartStorage);
+  } else {
+    cart = [];
   }
+  const cartContent = localStorage.getItem('cart');
+ console.log('Contenido crudo:', cartContent);
 }
 
 //Funcion para mostrar el carrito
-function showCar() {
-  console.log("Tus productos!:", car);
-  if (car.length === 0) {
-    carContainer.innerHTML = `<h2 class="car-empty-msg"> No tienes productos en el carrito</h2>`;
+function showCart() {
+  console.log("Tus productos!:", cart);
+  if (cart.length === 0) {
+    cartContainer.innerHTML = `<h2 class="car-empty-msg"> No tienes productos en el carrito</h2>`;
 
-    carFooter.innerHTML = "";
+    cartAside.innerHTML = "";
     return;
   }
-  carContainer.style.display = "block";
+  cartContainer.style.display = "block";
 
-  let htmlCar = "";
-  car.forEach((item, index) => {
+  let htmlCart = "";
+  cart.forEach((item, index) => {
     const subtotal = item.precio * item.cantidad;
 
-    htmlCar += `
-      <li class="car-item">
-          <div class="car-producto-info">
-            <img src="${imgSrc}" alt="${item.nombre}" class="car-img">
-              <div class="car-prduct-details">
+    htmlCart += `
+      <li class="cart-item">
+          <div class="cart-product-info">
+            <img src="${item.img}" alt="${item.nombre}" class="car-img">
+              <div class="cart-prduct-details">
                   <h3>${item.nombre}</h3>
-                  <span class="car-type">${item.tipo}</span>
-                  <span class="car-unit-price">Precio unitario: $${item.precio}</span>
+                  <span class="cart-type">${item.categoria}</span>
+                  <span class="cart-unit-price">Precio unitario: $${item.precio}</span>
               </div>
           </div>
 
-          <div class="product-car-actions">
+          <div class="product-cart-actions">
               <div class="cart-quantity-control">
                   <button class="quantity-btn" onclick="decreaseQuantity(${index})">-
                   </button>
@@ -55,7 +66,7 @@ function showCar() {
                   </button>
               </div>
               
-              <div class="car-price-subtotal">$${subtotal}</div>
+              <div class="cart-price-subtotal">$${subtotal}</div>
               
               <button class="delete-btn" onclick="deleteElement(${index})">
               <i class="fa fa-trash" aria-hidden="true"></i>
@@ -65,16 +76,16 @@ function showCar() {
     `;
   });
 
-  carList.innerHTML = htmlCar;
+  cartList.innerHTML = htmlCart;
 
-  carFooter.innerHTML = `
-      <div class="resume-car">
+  cartAside.innerHTML = `
+      <div class="resume-cart">
           <div class="resumen-row">
               <span>Total a pagar:</span>
-              <span class="total-resume">$${calcularPrecioTotal()}</span>
+              <span class="total-resume">$${totalPrice()}</span>
           </div>
           <div class="actions-resume">
-              <button class="clear-btn" onclick="clearCar()">Vaciar Carrito</button>
+              <button class="clear-btn" onclick="clearCart()">Vaciar Carrito</button>
               <button class="pay-btn" onclick="confirmPucharse()">Confirmar Compra</button>
           </div>
       </div>
@@ -82,15 +93,15 @@ function showCar() {
 }
 //Logica necesaria para disminuir la cantidad de un producto en el carrito
 function decreaseQuantity(index) {
-  if (car[index]) {
-    if (car[index].cantidad > 1) {
-      car[index].cantidad -= 1;
+  if (cart[index]) {
+    if (cart[index].cantidad > 1) {
+      cart[index].cantidad -= 1;
     } else {
       deleteElement(index);
       return;
     }
-    saveCar();
-    showCar();
+    saveCart();
+    showCart();
   }
 }
 
@@ -98,27 +109,27 @@ function deleteElement(index) {
   if (
     window.confirm("¿Estás seguro de que querés eliminar este producto del carrito?")
   ) {
-    car.splice(index, 1); //.slice() elimina un elemento del array en el index indicado
-    saveCar();
-    showCar();
+    cart.splice(index, 1); //.slice() elimina un elemento del array en el index indicado
+    saveCart();
+    showCart();
   }
 }
 
 //Logica para aumentar la cantidad de un producto en el carrito
 function increaseQuantity(index) {
-  if (car[index]) {
-    car[index].cantidad += 1;
-    saveCar();
-    showCar();
+  if (cart[index]) {
+    cart[index].cantidad += 1;
+    saveCart();
+    showCart();
   }
 }
 
 //Funcion para vaciar el carrito
-function clearCar() {
+function clearCart() {
   if (confirm("¿Estás seguro de que querés vaciar el carrito?")) {
-    car.length = 0;
-    saveCar();
-    showCar();
+    cart.length = 0;
+    saveCart();
+    showCart();
   }
 }
 
@@ -128,16 +139,16 @@ const confirmPucharse = async () => {
     return
   };
 
-  if (car.length === 0) {
+  if (cart.length === 0) {
     alert("El carrito está vacio. No se pudo confirmar la compra.");
     return;
   }
 
-  const userName = sessionStorage.getItem('userName') || 'Invitado';
+  const userName = localStorage.getItem('userName') || 'Invitado';
 
   const datosVenta = {
     user_name: userName,
-    productos: car.map(item => ({
+    productos: cart.map(item => ({
       id_producto: item.id,
       cantidad: item.cantidad
     }))
@@ -160,12 +171,12 @@ const confirmPucharse = async () => {
     console.log(resultado);
 
     if (resultado.factura) {
-      sessionStorage.setItem("ultimaVenta", JSON.stringify(resultado.factura));
+      localStorage.setItem("ultimaVenta", JSON.stringify(resultado.factura));
     }
 
     alert("compra finalizada!");
-    car.length = 0
-    saveCar()
+    cart.length = 0
+    saveCart()
 
     window.location.href = 'ticket.html';
 
@@ -174,3 +185,19 @@ const confirmPucharse = async () => {
     alert("Error al procesar la solicitud");
   }
 };
+
+function totalPrice() {
+  if (cart.length === 0) {
+    return 0;
+  }
+  return cart.reduce((total, item) => {
+    return total + item.precio * item.cantidad;
+  }, 0);
+}
+
+init();
+
+async function init() {
+  loadCart();
+  showCart();
+}

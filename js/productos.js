@@ -208,9 +208,17 @@ function sortProducts(option){
 }
 //=========================== CARRITO =================================
 function saveCart() {
-  localStorage.setItem("carrito", JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+function loadCart() {
+    const cartStorage = localStorage.getItem("cart");
+    if (cartStorage) {
+        cart = JSON.parse(cartStorage);
+    } else {
+        cart = [];
+    }
+}
 function addToCart(id){
     const selectedProd = products_list.find(p => p.id === id);
     if(selectedProd){
@@ -247,6 +255,8 @@ function updateCartQuantity() {
 
 async function init() {
     // Llamamos a la nueva función que separa por categoria
+    loadCart();
+    updateCartQuantity();
     await getProducts();
     displayProducts(products_list);
 }
