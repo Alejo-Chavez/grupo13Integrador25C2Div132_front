@@ -1,70 +1,79 @@
-const products_list = [
-    {id: 1, categoria:"Ropa Deportiva", nombre:"Anana", precio: 200, ruta_img: "img/anana.jpg"},
-    {id: 2, categoria:"Suplemento", nombre:"Arandano", precio: 100, ruta_img: "img/arandano.jpg"},
-    {id: 3, categoria:"Suplemento", nombre: "Banana", precio: 350, ruta_img: "img/banana.jpg"},
-    {id: 4, categoria:"Suplemento", nombre: "Frambuesa", precio: 160, ruta_img: "img/frambuesa.png"},
-    {id: 5, categoria:"Ropa Deportiva", nombre: "Frutilla", precio: 80, ruta_img: "img/frutilla.jpg"},
-    {id: 6, categoria:"Ropa Deportiva", nombre: "Kiwi", precio: 190, ruta_img: "img/kiwi.jpg"},
-    {id: 7, categoria:"Ropa Deportiva", nombre: "Mandarina", precio: 40, ruta_img: "img/mandarina.jpg"},
-    {id: 8, categoria:"Ropa Deportiva", nombre: "Manzana", precio: 80, ruta_img: "img/manzana.jpg"},
-    {id: 9, categoria:"Suplemento", nombre: "Naranja", precio: 25, ruta_img: "img/naranja.jpg"},
-    {id: 10, categoria:"Suplemento", nombre: "Pera", precio: 200, ruta_img: "img/pera.jpg"},
-    {id: 11, categoria:"Ropa Deportiva", nombre: "Pomelo amarillo", precio: 182, ruta_img: "img/pomelo-amarillo.jpg"},
-    {id: 12, categoria:"Ropa Deportiva", nombre: "Pomelo rojo", precio: 500, ruta_img: "img/pomelo-rojo.jpg"},
-    {id: 13, categoria:"Suplemento", nombre: "Ssandia", precio: 50, ruta_img: "img/sandia.jpg"},
-    {id: 1, categoria:"Ropa Deportiva", nombre:"Anana", precio: 200, ruta_img: "img/anana.jpg"},
-    {id: 2, categoria:"Suplemento", nombre:"Arandano", precio: 100, ruta_img: "img/arandano.jpg"},
-    {id: 3, categoria:"Suplemento", nombre: "Banana", precio: 350, ruta_img: "img/banana.jpg"},
-    {id: 4, categoria:"Suplemento", nombre: "Frambuesa", precio: 160, ruta_img: "img/frambuesa.png"},
-    {id: 5, categoria:"Ropa Deportiva", nombre: "Frutilla", precio: 80, ruta_img: "img/frutilla.jpg"},
-    {id: 6, categoria:"Ropa Deportiva", nombre: "Kiwi", precio: 190, ruta_img: "img/kiwi.jpg"},
-    {id: 7, categoria:"Ropa Deportiva", nombre: "Mandarina", precio: 40, ruta_img: "img/mandarina.jpg"},
-    {id: 8, categoria:"Ropa Deportiva", nombre: "Manzana", precio: 80, ruta_img: "img/manzana.jpg"},
-    {id: 9, categoria:"Suplemento", nombre: "Naranja", precio: 25, ruta_img: "img/naranja.jpg"},
-    {id: 10, categoria:"Suplemento", nombre: "Pera", precio: 200, ruta_img: "img/pera.jpg"},
-    {id: 11, categoria:"Ropa Deportiva", nombre: "Pomelo amarillo", precio: 182, ruta_img: "img/pomelo-amarillo.jpg"},
-    {id: 12, categoria:"Ropa Deportiva", nombre: "Pomelo rojo", precio: 500, ruta_img: "img/pomelo-rojo.jpg"},
-    {id: 13, categoria:"Suplemento", nombre: "Ssandia", precio: 50, ruta_img: "img/sandia.jpg"}
-    
-];
+const url = "http://localhost:3000/api/productos";
 
+let products_list = [];
+let cart = [];
+const suplementosBtn = document.querySelector('.supplement-sort-btn');
+const ropaBtn = document.querySelector('.clothes-sort-btn');
+const cartCount = document.getElementById("cart-badge");
+let currentCategoryFilter = null;  // Guarda qué categoría está filtrada (null = sin filtro)
+
+
+//FUNCION PARA OBETENER LOS PRODUCTOS DESDE EL BACKEND
+async function getProducts() {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    products_list = Array.isArray(data.payload) ? data.payload : data;
+    displayProducts(products_list);
+
+  } catch (error) {
+    console.error("Error en getProducts:", error);
+    
+    // ← CORREGIR: Obtener el contenedor primero
+    const productContainer = document.getElementById("products-section");
+    if (productContainer) {
+      productContainer.innerHTML = `<p>Error al cargar productos: ${error.message}</p>`;
+        }
+    }
+}
 
 //===== FUNCION PARA MOSTRAR LOS PORDUCTOS =======
-
 function displayProducts(productArray) {
-    const container = document.getElementById("products-section");
-    container.innerHTML = ""; // Limpia lo anterior
+    const productContainer = document.getElementById("products-section");
+    if (!productContainer) return; //por si no existe el contenedor
+    productContainer.innerHTML = ""; // Limpia lo anterior
+
+    //verifica si hay productos para mostarar
+    if (!productArray || productArray.length === 0) {
+        productContainer.innerHTML = "<p>No hay productos disponibles</p>";
+        return;
+    }
 
     productArray.forEach(prod => {
         const card = `
             <div class="product-card">
                 <div class="image-container">
-                    <img src="${prod.ruta_img}" alt="${prod.nombre}">
+                    <img src="${prod.img}" alt="${prod.nombre}">
                 </div>
                 <div class="information-container">
                     <h3>${prod.nombre}</h3>
                     <p class="product-category" >${prod.categoria}</p>
                     <p class="product-price" >$${prod.precio}</p>
-                    <button class="add-to-cart-btn" onclick="agregarACarrito(${prod.id})">
+                    <button class="add-to-cart-btn" onclick="addToCart(${prod.id})">
                         Agregar al carrito
                     </button>
                 </div>
             </div>
         `;
-        container.innerHTML += card;
+        productContainer.innerHTML += card;
     });
 }
-
+//
 //========================== FILTRAR POR CATEGORIA =====================
-const suplementosBtn = document.querySelector('.supplement-sort-btn');
-const ropaBtn = document.querySelector('.clothes-sort-btn');
-let currentCategoryFilter = null;  // Guarda qué categoría está filtrada (null = sin filtro)
 
 
-suplementosBtn.addEventListener('click', () => filterByCategory("Suplemento"));
-ropaBtn.addEventListener('click', () => filterByCategory("Ropa Deportiva"));
+
+suplementosBtn.addEventListener('click', () => filterByCategory("suplemento"));
+ropaBtn.addEventListener('click', () => filterByCategory("ropa_deportiva"));
 
 function filterByCategory(category) {
+    // Verifica si hay productos para filtrar
+    if (!products_list || products_list.length === 0) {
+        console.error("No hay productos para filtrar");
+        return;
+    }
+
     // Si el filtro ya está activo, lo desactivamos (toggle)
     if (currentCategoryFilter === category) {
         currentCategoryFilter = null;
@@ -73,13 +82,15 @@ function filterByCategory(category) {
         return;
     }
     
-    // Aplicamos el nuevo filtro
     currentCategoryFilter = category;
-    const filteredProducts = products_list.filter(prod => prod.categoria === category);
+    
+    const filteredProducts = products_list.filter(prod => 
+        prod.categoria === category 
+    );
     displayProducts(filteredProducts);
     updateCategoryButtons();
 }
-
+    
 function updateCategoryButtons() {
     const suplementosBtn = document.querySelector('.supplement-sort-btn');
     const ropaBtn = document.querySelector('.clothes-sort-btn');
@@ -89,9 +100,9 @@ function updateCategoryButtons() {
     ropaBtn.classList.remove('active-category');
     
     // Aplicar clase activa al botón correspondiente si hay filtro activo
-    if (currentCategoryFilter === "Suplemento") {
+    if (currentCategoryFilter === "suplemento") {
         suplementosBtn.classList.add('active-category');
-    } else if (currentCategoryFilter === "Ropa Deportiva") {
+    } else if (currentCategoryFilter === "ropa_deportiva") {
         ropaBtn.classList.add('active-category');
     }
 }
@@ -155,10 +166,16 @@ document.addEventListener('click', () => {
 });
 //================== AHORA LA FUNCION PARA ORDENAR LOS PRODUCTOS ======================
 function sortProducts(option){
-    let sortedProducts = [...products_list]
+    let sortedProducts = [...products_list];
+
+    if (!sortedProducts || sortedProducts.length === 0) {
+        console.error("No hay productos para ordenar");
+        return;
+    }
 
     if (currentCategoryFilter) {
-        sortedProducts = sortedProducts.filter(prod => prod.categoria === currentCategoryFilter);
+        sortedProducts = sortedProducts.filter(prod => 
+        prod.categoria === currentCategoryFilter);
     }
 
     switch(option){
@@ -189,12 +206,48 @@ function sortProducts(option){
     displayProducts(sortedProducts);
     updateCategoryButtons();
 }
+//=========================== CARRITO =================================
+function saveCart() {
+  localStorage.setItem("carrito", JSON.stringify(cart));
+}
+
+function addToCart(id){
+    const selectedProd = products_list.find(p => p.id === id);
+    if(selectedProd){
+        const itemOnCart = cart.find(item => item.id === id);
+
+        if (itemOnCart) {
+            itemOnCart.cantidad += 1;
+        } else {
+  
+          cart.push({
+          id: selectedProd.id,
+          nombre: selectedProd.nombre,
+          categoria: selectedProd.categoria,
+          precio: selectedProd.precio,
+          img: selectedProd.img,
+          cantidad: 1,
+    });
+  }       
+        saveCart();
+        updateCartQuantity();
+        //alert(`Se agregó ${selectedProd.nombre} al carrito!`);
+    } else {
+        console.error("Producto no encontrado con ID:", id);
+    }
+}
+
+function updateCartQuantity() {
+    const cartTotal = cart.reduce((total, prod) => total + prod.cantidad, 0);
+    cartCount.textContent = cartTotal;
+}
 
 
 
 
-function init() {
+async function init() {
     // Llamamos a la nueva función que separa por categoria
+    await getProducts();
     displayProducts(products_list);
 }
 
