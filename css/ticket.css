@@ -7,7 +7,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #ffffff;
-    color: #00157a;
+    color: #ffffff;
 }
 
 /* === header igual que en productos/carrito === */
@@ -16,7 +16,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 8px 16px;
-    background-color: #00157a;
+    background-color: #dddddd94;
     color: #ffffff;
 }
 
@@ -63,12 +63,11 @@ body {
     margin-bottom: 12px;
 }
 
-/* card ticket */
-
 .card-simple {
     display: flex;
     flex-direction: row;
-    border: 1px solid #00157a;
+    border: 1px solid #000000;
+    color: black;
     border-radius: 6px;
     padding: 10px;
 }
@@ -117,8 +116,6 @@ body {
     font-weight: bold;
 }
 
-/* botÃ³n */
-
 .acciones {
     margin-top: 10px;
 }
@@ -133,6 +130,6 @@ body {
 }
 
 .btn-principal {
-    background-color: #00157a;
+    background-color: #000000b4;
     color: #ffffff;
 }
