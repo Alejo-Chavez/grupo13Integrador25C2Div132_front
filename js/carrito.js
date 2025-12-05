@@ -20,9 +20,6 @@ viewProducts.addEventListener("click", () => {
     window.location.href = "productos.html";
 });
 
-ticketButton.addEventListener("click",()=>{
-    window.location.href = "ticket.html"
-})
 //Funcion para guardar el carrito en localStorage
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -188,7 +185,8 @@ const confirmPucharse = async () => {
 
     const resultado = await respuesta.json();
     const data = resultado.factura;
-    console.log(data);
+    
+    localStorage.setItem("ticket", JSON.stringify(data));
 
     if (resultado.factura) {
       localStorage.setItem("ultimaVenta", JSON.stringify(resultado.factura));

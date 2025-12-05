@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
 
     <script src="js/ticket.js" defer></script> <!-- Tjs del ticket -->
 </head>
+
 <body>
     <header class="header">
         <div class="logo">
@@ -32,19 +34,22 @@
         <h1 class="titulo">Ticket de compra</h1>
 
         <section class="card-simple">
-            <h2 class="titulo-tienda">FitLab</h2>
+            <div class="ticket-info">
+                <p><strong>Cliente:</strong> <span id="ticket-cliente">--</span></p>
+                <p><strong>Fecha:</strong> <span id="ticket-fecha">--</span></p>
+                <h3 class="subtitulo">Productos comprados</h3>
+                <div id="ticket-items" class="ticket-items">
+                    <!-- se llena con ticket.js -->
+                </div>
 
-            <p><strong>Cliente:</strong> <span id="ticket-cliente">-</span></p>
-            <p><strong>Fecha:</strong> <span id="ticket-fecha">-</span></p>
-
-            <h3 class="subtitulo">Productos comprados</h3>
-            <div id="ticket-items" class="ticket-items">
-                <!-- se llena con ticket.js -->
+                <div class="total">
+                    <span>FitLab</span>
+                    <span>Total:</span>
+                    <span id="ticket-total">$0</span>
+                </div>
             </div>
-
-            <div class="total">
-                <span>Total:</span>
-                <span id="ticket-total">$0</span>
+            <div class="ticket-user-info">
+                <p>AAA</p>
             </div>
         </section>
 
@@ -56,4 +61,5 @@
     </main>
 
 </body>
+
 </html>
