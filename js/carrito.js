@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000";
+const url = "http://localhost:3000";
 let cart = [];
 // ==== === === === === === === === === ===
 const cartContainer = document.getElementById("cart-container");
@@ -6,11 +6,16 @@ const cartList = document.getElementById("cart-list");
 const cartAside = document.getElementById("cart-aside");
 const cartEmpty = document.getElementById("cart-empty");
 const logOut = document.getElementById("logOut")
+const viewProducts = document.getElementById("viewProducts");
 
 //ADD EVENT LISTENER 
 logOut.addEventListener("click", () => {
     localStorage.clear();
     window.location.href = "index.html";
+});
+
+viewProducts.addEventListener("click", () => {
+    window.location.href = "productos.html";
 });
 
 //Funcion para guardar el carrito en localStorage
@@ -40,7 +45,6 @@ function showCart() {
     cartAside.innerHTML = "";
     return;
   }
-  cartContainer.style.display = "block";
 
   let htmlCart = "";
   cart.forEach((item, index) => {
@@ -148,14 +152,14 @@ const confirmPucharse = async () => {
 
   const datosVenta = {
     user_name: userName,
-    productos: cart.map(item => ({
-      id_producto: item.id,
-      cantidad: item.cantidad
+    products: cart.map(item => ({ 
+      id: item.id,
+      quantity: item.cantidad
     }))
   };
 
   try {
-    const respuesta = await fetch("http://localhost:3300/api/sales", {
+    const respuesta = await fetch(`${url}/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(datosVenta)
