@@ -7,6 +7,8 @@ const cartAside = document.getElementById("cart-aside");
 const cartEmpty = document.getElementById("cart-empty");
 const logOut = document.getElementById("logOut")
 const viewProducts = document.getElementById("viewProducts");
+const cartTitle = document.getElementById("cart-title");
+const ticketButton = document.getElementById("ticket-button");
 
 //ADD EVENT LISTENER 
 logOut.addEventListener("click", () => {
@@ -18,6 +20,9 @@ viewProducts.addEventListener("click", () => {
     window.location.href = "productos.html";
 });
 
+ticketButton.addEventListener("click",()=>{
+    window.location.href = "ticket.html"
+})
 //Funcion para guardar el carrito en localStorage
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -38,17 +43,26 @@ function loadCart() {
 
 //Funcion para mostrar el carrito
 function showCart() {
-  console.log("Tus productos!:", cart);
   if (cart.length === 0) {
+    // Ocultamos el título
+    if (cartTitle) {
+      cartTitle.style.display = "none";
+    }
+    
     cartContainer.innerHTML = `<h2 class="car-empty-msg"> No tienes productos en el carrito</h2>`;
-
     cartAside.innerHTML = "";
     return;
+  }
+  
+  // Mostramos el título cuando hay productos
+  if (cartTitle) {
+    cartTitle.style.display = "block"; // o "flex", "grid", etc.
   }
 
   let htmlCart = "";
   cart.forEach((item, index) => {
     const subtotal = item.precio * item.cantidad;
+    const catogoryCapitalized = item.categoria.charAt(0).toUpperCase() + item.categoria.slice(1);
 
     htmlCart += `
       <li class="cart-item">
@@ -56,8 +70,8 @@ function showCart() {
             <img src="${item.img}" alt="${item.nombre}" class="car-img">
               <div class="cart-prduct-details">
                   <h3>${item.nombre}</h3>
-                  <span class="cart-type">${item.categoria}</span>
-                  <span class="cart-unit-price">Precio unitario: $${item.precio}</span>
+                  <span class="cart-type">${catogoryCapitalized}</span>
+                  <span class="cart-unit-price">Precio unitario: $${item.precio.toLocaleString()}</span>
               </div>
           </div>
 
@@ -81,12 +95,11 @@ function showCart() {
   });
 
   cartList.innerHTML = htmlCart;
-
   cartAside.innerHTML = `
       <div class="resume-cart">
           <div class="resumen-row">
-              <span>Total a pagar:</span>
-              <span class="total-resume">$${totalPrice()}</span>
+              <span class="span">Total a pagar:</span>
+              <span class="total-resume">$${totalPrice().toLocaleString()}</span>
           </div>
           <div class="actions-resume">
               <button class="clear-btn" onclick="clearCart()">Vaciar Carrito</button>
@@ -149,17 +162,21 @@ const confirmPucharse = async () => {
   }
 
   const userName = localStorage.getItem('userName') || 'Invitado';
+  const cartStorage = localStorage.getItem("cart");
 
   const datosVenta = {
-    user_name: userName,
-    products: cart.map(item => ({ 
-      id: item.id,
-      quantity: item.cantidad
+      nombre_usuario: userName,  
+      //total a pagar
+      total: totalPrice(),             
+      productos: cart.map(item => ({
+      producto_id: item.id,    
+      precio: item.precio,     
+      cantidad: item.cantidad  
     }))
   };
 
   try {
-    const respuesta = await fetch(`${url}/`, {
+    const respuesta = await fetch(`${url}/api/tickets`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(datosVenta)
@@ -170,9 +187,8 @@ const confirmPucharse = async () => {
     }
 
     const resultado = await respuesta.json();
-
-
-    console.log(resultado);
+    const data = resultado.factura;
+    console.log(data);
 
     if (resultado.factura) {
       localStorage.setItem("ultimaVenta", JSON.stringify(resultado.factura));

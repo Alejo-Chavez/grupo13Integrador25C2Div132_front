@@ -180,7 +180,9 @@
     cursor: pointer;
     color: #333;
 }
-
+#cart-badge{
+    display: none;
+}
 .cart-badge {
     position: absolute;
     top: 9px;

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket de compra</title>
+    <link rel="icon" type="image/png" href="img/icono/icono.jpg">
+    <link rel="stylesheet" href="css/ticket.css">
+    <script src="js/ticket.js" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- Libreria pdf -->
+
+
+    <script src="js/ticket.js" defer></script> <!-- Tjs del ticket -->
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-circulo">G</div>
+            <span>Guitanos Autoservicio</span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="carrito.html">Carrito</a>
+            <a href="ticket.html" class="activo">Ticket</a>
+        </nav>
+    </header>
+
+    <main class="main">
+        <h1 class="titulo">Ticket de compra</h1>
+
+        <section class="card-simple">
+            <h2 class="titulo-tienda">FitLab</h2>
+
+            <p><strong>Cliente:</strong> <span id="ticket-cliente">-</span></p>
+            <p><strong>Fecha:</strong> <span id="ticket-fecha">-</span></p>
+
+            <h3 class="subtitulo">Productos comprados</h3>
+            <div id="ticket-items" class="ticket-items">
+                <!-- se llena con ticket.js -->
+            </div>
+
+            <div class="total">
+                <span>Total:</span>
+                <span id="ticket-total">$0</span>
+            </div>
+        </section>
+
+        <div class="acciones">
+            <button id="btn-descargar" class="btn btn-secundario">Descargar ticket en PDF</button>
+            <a href="index.html" class="btn btn-principal">Volver al inicio</a>
+        </div>
+
+    </main>
+
+</body>
+</html>

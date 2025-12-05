@@ -2,12 +2,45 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 header{
     display: flex;
     background-color: #FDF6F5;
+}
+
+.header-logo{
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+}
+.header-logo img{
+    width: 100%;
+    height: 100%;
+}
+.nav{
+    display: flex !important;
+    justify-content: end;
+    width: 100%;
+    margin: 0 1.2rem;
+    align-items: center;
+    gap: 1rem;
     
+}
+.nav-link{
+    text-decoration: none;
+    color: inherit; 
+    font-size: 1.2rem;
+    background: #FDF6F5;
+    border: none
+}
+.nav-link:hover{
+
+    text-decoration: double underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: #333;
+    text-underline-offset: 4px;
 }
 /*======================================================*/
 body{
@@ -22,30 +55,31 @@ main {
     display: flex;
     flex-direction: column;
 }
-h1{
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
 #main-cart{
     flex: 1;
     display: flex;
     flex-direction: row;
-    background-color: aqua;
 }
 
 #cart-container{
     display: flex;
     flex-direction: row;
-    background-color: #ec2000;
     width: 100%;
     height: 100vh;
 }
-
+.car-empty-msg{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: start;
+    font-weight: 100;
+    font-size: 2.3rem;
+    color: red;
+}
 
 #cart-aside{
     display: flex;
-    background-color: #c0f10d;
+    background-color: #ffffff;
     padding: 1.2rem;
     width: 30%;
     min-width: 300px;
@@ -56,7 +90,7 @@ h1{
     display: flex;
     flex-direction: column;
     list-style: none;
-    background-color: #13be6f;
+    background-color: #ffffff;
     padding: 1.5rem;
     margin: 0;
     gap: 2rem;
@@ -64,24 +98,76 @@ h1{
 }
 .cart-item{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     border: 1px solid #ccc;
     padding: 1rem;
-    background-color: #f9f9f9;
+    background-color: #cccccc23;
+    border-radius: 0.5rem;
 }
-
+hr{
+    background-color: red;
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 0.2rem;
+    
+}
+.cart-button{
+    display: none;
+}
 .resume-cart{
     display: flex;
-    background-color: brown;
+    flex-direction: column;
+    background-color: #cccccc23;
+    flex: 1;    
+    border-radius: 0.5rem;
 }
+.resumen-row{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+.span{
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+.total-resume{
+    font-size: 2rem;
+    font-weight: 700;
+
+}
+.actions-resume{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.actions-resume button{
+    width: 10rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #ee2506f8;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.actions-resume button:hover{
+    background-color: #b91e1e;
+}
+
 .cart-product-info{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     gap: 1rem;
-    margin-bottom: 1rem;
 }
 .cart-product-info img{
+    margin-left: 50%;
     width: 100px;
     height: 100px;
     object-fit: cover;
@@ -89,14 +175,56 @@ h1{
 .cart-prduct-details{
     display: flex;
     flex-direction: column;
+    align-items: start;
     gap: 0.5rem;   
+
 }
 .product-cart-actions{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: .5rem;
+}
+.cart-quantity-control{
+    display: flex;
+    width: 7rem;
+    height: 3rem;
+    gap: 1px;
+    justify-content: space-between; ;
+    align-items: center;
+}
+.quantity-item{
+    font-size: 1.1rem;
+    font-weight: 900;
+}
+
+.quantity-btn{
+    all: unset; 
+    height: 39px;
+    font-size: 1.6rem;
+    transition: transform 0.2s ease;
+}
+
+.quantity-btn:hover{
+    transform: scale(1.38);
+}
+
+.cart-price-subtotal{
+    font-size: 1.76rem;
+    font-weight: 600;
+}
+.delete-btn{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: rgba(252, 30, 30, 0.788); 
+    font-size: 1.38rem;
+    transition: trasform 0.3 ease-out;
+}
+.delete-btn:hover{
+    transform: scale(1.28);
 }
 /*==================================================*/
 footer{
@@ -106,6 +234,8 @@ footer{
     text-align: center;
     margin-top: auto;
 }
+
+
 
 @media(max-width: 800){
     #cart-container{

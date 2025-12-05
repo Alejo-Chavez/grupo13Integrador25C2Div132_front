@@ -48,7 +48,7 @@ function displayProducts(productArray) {
                 </div>
                 <div class="information-container">
                     <h3>${prod.nombre}</h3>
-                    <p class="product-category" >${prod.categoria}</p>
+                    <p class="product-category"> ${prod.categoria}</p>
                     <p class="product-price" >$${prod.precio}</p>
                     <button class="add-to-cart-btn" onclick="addToCart(${prod.id})">
                         Agregar al carrito
@@ -247,6 +247,10 @@ function addToCart(id){
 
 function updateCartQuantity() {
     const cartTotal = cart.reduce((total, prod) => total + prod.cantidad, 0);
+    
+    if(cartTotal > 0 ){
+        cartCount.style.display = 'block';
+    }
     cartCount.textContent = cartTotal;
 }
 
