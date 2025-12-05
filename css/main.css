@@ -40,7 +40,7 @@ header {
     display: flex;
     justify-content: space-between;
     gap: 9rem;
-    height: 60%;
+    height: 100%;
     min-height: 0;
     color: #fff;
     /*En flex-direction: column; el atributo flex controla el ALTO, en flex-direction: row;, controla el ANCHO*/
@@ -91,42 +91,6 @@ header {
     opacity: 90%;
 }
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-.nav-bar {
-    /*Estilos para los botones*/
-    background-color: #202020;
-    height: 40%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.btn{
-    text-decoration: none;
-    background-color: #2a99fada;
-    cursor: pointer;
-    border: none;
-    border-radius: 0.4rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    width: 6rem;
-    height: 2.3rem;
-    color: #000000a8;
-    display: inline-block;
-    font-family: "Poppins", sans-serif;
-    font-style: oblique;
-    box-shadow: 0 0.2rem #0c4e86;
-}
-.btn:hover{
-    filter: brightness(1.25);
-    background-color: #2a99faf8;
-}
-.btn:active{
-    transition: 0.2s linear;
-    font-size: 1rem;
-    transform: translateY(2px);
-    box-shadow: 0 0.14rem #0c4e86;
-}
 
 /*================================= Estilos del main =================================*/
 main{
@@ -200,7 +164,6 @@ main{
 }
 .form ::placeholder{
     text-align: start;
-    padding-left: 0.9rem;
     font-size: 0.8rem;
     outline: none;
 }
@@ -236,7 +199,10 @@ main{
     box-shadow: 0 0.1rem #0c4e86;
     font-size: 0.77rem;filter: brightness(1.1);
 }
-
+#id-usuario {
+    padding-left: 10px; 
+   
+}
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 Media */
 

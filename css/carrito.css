@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    background-color: #FDF6F5;
+    
+}
+/*======================================================*/
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+#main-cart{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    background-color: aqua;
+}
+
+#cart-container{
+    display: flex;
+    flex-direction: row;
+    background-color: #ec2000;
+    width: 100%;
+    height: 100vh;
+}
+
+
+#cart-aside{
+    display: flex;
+    background-color: #c0f10d;
+    padding: 1.2rem;
+    width: 30%;
+    min-width: 300px;
+}
+
+#cart-list{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    background-color: #13be6f;
+    padding: 1.5rem;
+    margin: 0;
+    gap: 2rem;
+    flex: 1; 
+}
+.cart-item{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+.resume-cart{
+    display: flex;
+    background-color: brown;
+}
+.cart-product-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.cart-product-info img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.cart-prduct-details{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;   
+}
+.product-cart-actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+/*==================================================*/
+footer{
+    background: #b91e1e;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+@media(max-width: 800){
+    #cart-container{
+        flex-direction: column;
+    }
+    #cart-aside{
+        width: 80vw;
+        height: auto;
+    }
+    #cart-list{
+        width: 100vw;
+        height: auto;
+    }
+}

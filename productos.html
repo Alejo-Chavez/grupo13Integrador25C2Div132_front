@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/productos.css">
     <script defer src="js/productos.js"></script>
     <link rel="icon" href="img/logo-empresa.jpeg" type="img.jpeg">
+    <script src="https://kit.fontawesome.com/101677460b.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -24,7 +25,7 @@
                 </div>
                 <div class="upper-nav-buttons">
                     <button class="nav-button active-style btn">Tickets</button>
-                    <button class="nav-button active-style btn">Salir</button>
+                    <a href="index.html"><button id="logOut" class="nav-button active-style btn" id>Salir</button></a>
                 </div>
             </nav>
             <nav class="search-nav">
@@ -42,41 +43,19 @@
                         <li><a href="#" data-sort="za">Z - A</a></li>
                     </ul>
                 </div>
-                <button class="search-nav-button car-button active-style btn">Carrito</button>
 
+                <div>
+                    <a href="carrito.html"><button class="search-nav-button car-button active-style btn">Carrito</button>
+                    <button class="car-icon">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="cart-badge" id="cart-badge">0</span>
+                    </button></a>
+                </div>
             </nav>
         </div>
     </header>
     <hr class="divisor">
     <main class="container">
-        <aside class="aside-sort">
-            <h3 class="sort-by-h3">Ordenar por</h3>
-
-            <div class="orden-buttons">
-
-                <label class="btn-order btn">
-                    <input type="radio" name="orden" value="az">
-                    A-Z
-                </label>
-
-                <label class="btn-order btn">
-                    <input type="radio" name="orden" value="za">
-                    Z-A
-                </label>
-
-                <label class="btn-order btn">
-                    <input type="radio" name="orden" value="lowest-price">
-                    Menor precio
-                </label>
-
-                <label class="btn-order btn">
-                    <input type="radio" name="orden" value="highest-price">
-                    Mayor precio
-                </label>
-
-            </div>
-        </aside>
-
         <!-- Aca van la barra de filtros y los porductos -->
         <section id="products-section">
 
